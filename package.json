@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "test": "jest --verbose --coverage"
+  },
+  "devDependencies": {
+    "@types/jest": "^29",
+    "@types/node": "^18",
+    "ts-jest": "^29",
+    "ts-node": "^10",
+    "typescript": "^4"
+  }
+}
