@@ -118,9 +118,9 @@ $ npx ts-node src/index.ts
 ...
 ```
 
-Annettu valmis käyttöliittymä huolehtii tapahtumien tulostamisesta, mutta **tapahtumat ovat väärässä järjestyksessä** ja **tapahtumien alkamisaikaa ei ole rajoitettu**.
+Annettu koodi huolehtii tapahtumien tulostamisesta, mutta **tapahtumat ovat väärässä järjestyksessä** ja **tapahtumien alkamisaikaa ei ole rajoitettu**.
 
-Kutsut tapahtumien suodattamiseksi ja järjestelemiseksi on valmiiksi paikallaan [src/index.ts](./src/index.ts)-tiedostossa, mutta sinun tehtäväsi on toteuttaa varsinainen logiikka aineiston suodattamiseksi ja järjestelemiseksi.
+Kutsut tapahtumien suodattamiseksi ja järjestelemiseksi ovat valmiiksi paikoillaan [src/index.ts](./src/index.ts)-tiedostossa, mutta sinun tehtäväsi on toteuttaa varsinainen logiikka aineiston suodattamiseksi ja järjestelemiseksi.
 
 
 ## Osa 1: aineiston suodattaminen (2 pistettä)

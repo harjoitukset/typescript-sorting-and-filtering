@@ -29,6 +29,6 @@ export type Name = {
  * See https://open-api.myhelsinki.fi/doc#model-DescriptionTranslated
  */
 export type EventDescription = {
-    intro: string;
-    body: string;
+    intro?: string;
+    body?: string;
 };
