@@ -38,7 +38,9 @@ describe('sorting events by starting date', () => {
         };
         jest.spyOn(Array.prototype, 'sort').mockImplementation(notAllowed);
 
+        // this will throw an error if Array.sort is called:
         sortEventsByStartDate(unordered);
+
         assert.ok(true, 'Array.sort was not called');
     });
 });

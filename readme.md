@@ -36,6 +36,8 @@ Tehtävän yksikkötestit suoritetaan [Jest-työkalun](https://jestjs.io/) avull
 $ npm test          # sama kuin `npx jest --verbose --coverage`
 ```
 
+Varsinaiset testit löytyvät tiedostoista [src/filtering.test.ts](./src/filtering.test.ts) ja [src/sorting.test.ts](./src/sorting.test.ts).
+
 
 ## Järjesteltävä aineisto
 
@@ -95,7 +97,7 @@ Tehtävän yksinkertainen tekstikäyttöliittymä on toteutettu valmiiksi [`src/
 ```
 $ npx ts-node src/index.ts
 
-# Events between 2/3/2023, 12:22:39 PM and 3/5/2023, 12:22:39 PM
+# Events from MyHelsinki Open API
 
 ## 2/3/2023
 
@@ -118,7 +120,7 @@ $ npx ts-node src/index.ts
 ...
 ```
 
-Annettu koodi huolehtii tapahtumien tulostamisesta, mutta **tapahtumat ovat väärässä järjestyksessä** ja **tapahtumien alkamisaikaa ei ole rajoitettu**.
+Annettu koodi huolehtii tapahtumien tulostamisesta, mutta **tapahtumat ovat väärässä järjestyksessä** ja **tapahtumien alkamisaikaa ei ole rajoitettu**. Ohjelman päivämäärät ja kellonajat muotoillaan käyttöjärjestelmän asetusten mukaisesti, joten oma tulosteesi voi poiketa yllä esitetystä.
 
 Kutsut tapahtumien suodattamiseksi ja järjestelemiseksi ovat valmiiksi paikoillaan [src/index.ts](./src/index.ts)-tiedostossa, mutta sinun tehtäväsi on toteuttaa varsinainen logiikka aineiston suodattamiseksi ja järjestelemiseksi.
 

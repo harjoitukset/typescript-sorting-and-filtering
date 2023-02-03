@@ -6,22 +6,22 @@ import { Event } from "./types/Event";
 const MILLISECONDS_PER_WEEK = 30 * 24 * 60 * 60 * 1_000;
 
 async function main() {
-    let events: Event[] = await getEvents();
+    const now = new Date();
+    const nextWeek = new Date(now.getTime() + MILLISECONDS_PER_WEEK);
 
-    let now = new Date();
-    let nextWeek = new Date(now.getTime() + MILLISECONDS_PER_WEEK);
+    const allEvents: Event[] = await getEvents();
+    const eventsNextWeek = filterEventsByStartDate(allEvents, now, nextWeek);
 
-    events = filterEventsByStartDate(events, now, nextWeek);
-    printEvents(events);
+    printEvents(eventsNextWeek);
 }
 
 /**
  * Prints the given array of events in ascending order by their start dates.
  */
 function printEvents(events: Event[]) {
-    let sorted = sortEventsByStartDate(events);
+    const sorted = sortEventsByStartDate(events);
 
-    console.log(`# Events between ${sorted[0].toLocaleString()} and ${sorted[sorted.length - 1].toLocaleString()}`);
+    console.log(`# Events from MyHelsinki Open API`);
 
     let currentDate = '';
     sorted.forEach(event => {
