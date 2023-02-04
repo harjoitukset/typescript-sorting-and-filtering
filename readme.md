@@ -30,14 +30,6 @@ Riippuvuudet sisältävät sekä [TypeScript-kielen](https://www.npmjs.com/packa
 
 Lisäksi riippuvuuksista löytyy [`node-fetch`](https://www.npmjs.com/package/node-fetch), joka mahdollistaa selaimista tutun `fetch`-funktion hyödyntämisen REST-rajapinnan kutsumiseksi. Node.js:n [versiosta 18 alkaen](https://nodejs.org/dist/latest/docs/api/globals.html#fetch) `fetch`-funktio kuuluu osaksi standardikirjastoa, eikä vaadi enää erillistä asennusta. Node.js sinulta tulee löytyä valmiina.
 
-Tehtävän yksikkötestit suoritetaan [Jest-työkalun](https://jestjs.io/) avulla komennolla `npm test`:
-
-```sh
-$ npm test          # sama kuin `npx jest --verbose --coverage`
-```
-
-Varsinaiset testit löytyvät tiedostoista [src/filtering.test.ts](./src/filtering.test.ts) ja [src/sorting.test.ts](./src/sorting.test.ts).
-
 
 ## Järjesteltävä aineisto
 
@@ -87,7 +79,7 @@ Karkeasti supistettuna rajapinnasta saatu vastaus voi näyttää esimerkiksi seu
 }
 ```
 
-Tehtävässä tätä tietorakennetta vastaava karsittu tyyppi on valmiiksi määritettynä [src/types/Event.ts](./src/types/Event.ts)-tiedostossa.
+Tehtävässä tätä tietorakennetta vastaava hieman yksinkertaistettu tyyppi on valmiiksi määritettynä [src/types/Event.ts](./src/types/Event.ts)-tiedostossa. Tietojen haku on puolestaan toteutettu [src/client.ts](./src/client.ts)-tiedostoon. Näitä tiedostoja ei tarvitse muokata.
 
 
 ## Ohjelman suorittaminen
@@ -126,7 +118,7 @@ Mikäli ohjelma järjestelee ja suodattaa tapahtumat oikein, on sen tuloste muod
 
 Annettu koodi huolehtii tapahtumien tulostamisesta, mutta **tapahtumat ovat väärässä järjestyksessä** ja **tapahtumien alkamisaikaa ei ole rajoitettu**.
 
-Kutsut tapahtumien suodattamiseksi ja järjestelemiseksi ovat valmiiksi paikoillaan [src/index.ts](./src/index.ts)-tiedostossa, mutta sinun tehtäväsi on toteuttaa varsinainen logiikka aineiston suodattamiseksi ja järjestelemiseksi.
+Kutsut tapahtumien suodattamiseksi ja järjestelemiseksi ovat valmiiksi paikoillaan [src/index.ts](./src/index.ts)-tiedostossa, mutta sinun tehtäväsi on toteuttaa varsinainen logiikka aineiston [suodattamiseksi](./src/filtering.ts) ja [järjestelemiseksi](./src/sorting.ts).
 
 
 ## Osa 1: aineiston suodattaminen (2 pistettä)
@@ -213,11 +205,22 @@ Huomaa, että koodisi tulee järjestellä **kokonaisia tapahtumatietueita**, eli
 
 ### Algoritmin valintaperusteet
 
-Voit valita itsellesi mieluisen algoritmin esimerkiksi tutustumalla ensin niiden tehokkuuteen tai valita sen, joka vaikuttaa toteutukseltaan sopivan yksinkertaiselta. Muista myös, että voit kysyä Teamsissa neuvoa mihin vain tehtävässä kohtaamaasi haasteeseen liittyen. Todennäköisesti samojen haasteiden parissa kamppailee myös moni muu kurssilainen.
+Voit valita itsellesi mieluisen algoritmin esimerkiksi tutustumalla ensin niiden tehokkuuteen. Voit myös hyvin valita sen, joka vaikuttaa toteutukseltaan sopivan yksinkertaiselta. Muista myös, että voit kysyä Teamsissa neuvoa mihin vain tehtävässä kohtaamaasi haasteeseen liittyen. Todennäköisesti samojen haasteiden parissa kamppailee myös moni muu kurssilainen.
 
 Arvioi lopuksi tehtävää ratkaistessasi järjestämiseen kuluvaa aikaa. Miten esimerkiksi aineiston koon kaksinkertaistaminen vaikuttaisi ohjelmasi suoritusaikaan? Kirjoita yhden virkkeen pituinen arvio suorituskyvystä funktiosi yhteyteen kommenttina.
 
 **Huom!** Oikeassa ohjelmistoprojektissa käyttäisit JavaScriptin `Array.sort`-funktiota ja antaisit sille parametrina kahden tapahtuman ajankohtia vertailevan vertailufunktion. Voit tutustua aiheeseen esim. [mdn web docs -sivustolla](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort). Tässä tehtävässä kuitenkin harjoitellaan algoritmin toteutusta, joten kirjoitamme järjestelemisen itse.
+
+
+## Tehtävän testaaminen
+
+Tehtävän yksikkötestit suoritetaan [Jest-työkalun](https://jestjs.io/) avulla komennolla `npm test`:
+
+```sh
+$ npm test          # sama kuin `npx jest --verbose --coverage`
+```
+
+Varsinaiset testit löytyvät tiedostoista [src/filtering.test.ts](./src/filtering.test.ts) ja [src/sorting.test.ts](./src/sorting.test.ts). Voit halutessasi perehtyä testien sisältöön, mutta se ei ole tehtävän ratkaisemiseksi välttämätöntä.
 
 
 ----

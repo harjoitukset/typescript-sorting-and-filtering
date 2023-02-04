@@ -5,6 +5,10 @@ import { Event } from "./types/Event";
 
 const MILLISECONDS_PER_WEEK = 30 * 24 * 60 * 60 * 1_000;
 
+/**
+ * Fetches events from MyHelsinki Open API and prints the events starting during
+ * the next week in ascending order.
+ */
 async function main() {
     const now = new Date();
     const nextWeek = new Date(now.getTime() + MILLISECONDS_PER_WEEK);
@@ -16,25 +20,27 @@ async function main() {
 }
 
 /**
- * Prints the given array of events in ascending order by their start dates.
+ * Prints the given array of events in ascending order by their starting times. For each day,
+ * the date is printed before the events starting during that day. Date and time formatting
+ * utilizes the user's locale.
  */
 function printEvents(events: Event[]) {
     const sorted = sortEventsByStartDate(events);
 
     console.log(`# Events from MyHelsinki Open API`);
 
-    let currentDate = '';
+    let previousDate = '';
     sorted.forEach(event => {
         let name = getName(event);
 
-        let dateStr = event.event_dates.starting_day;
-        let date = dateStr ? new Date(dateStr).toLocaleDateString() : 'no date';
-        let time = dateStr ? new Date(dateStr).toLocaleTimeString() : 'no time';
+        let isoDateTime = event.event_dates.starting_day;
+        let date = isoDateTime ? new Date(isoDateTime).toLocaleDateString() : 'no date';
+        let time = isoDateTime ? new Date(isoDateTime).toLocaleTimeString() : 'no time';
 
-        // date is printed only once before the first event for that day
-        if (date !== currentDate) {
+        // if this is the first event for a day, print also the date
+        if (date !== previousDate) {
             console.log(`\n## ${date}\n`);
-            currentDate = date;
+            previousDate = date;
         }
 
         console.log(` * ${time}: ${name}`);
