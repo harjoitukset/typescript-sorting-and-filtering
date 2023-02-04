@@ -1,6 +1,6 @@
 # TypeScript: Tapahtumien suodattaminen ja lajittelu
 
-Tämän tehtävän tarkoituksena on harjoitella sisäkkäisistä tietorakenteista koostuvan aineiston suodattamista sekä järjestämistä tiettyjen ehtojen mukaisesti.
+Tämän tehtävän tarkoituksena on harjoitella sisäkkäisistä tietorakenteista koostuvan aineiston suodattamista sekä järjestämistä eli lajittelua tiettyjen ehtojen mukaisesti.
 
 Aineistona käytämme [MyHelsinki Open API](https://open-api.myhelsinki.fi/) -nimisen REST-rajapinnan tarjoamia tapahtumatietoja. Rajapinnan vastaus koostuu JSON-rakenteessa, jonka sisällä on taulukko tapahtumista, joilla on jokaisella tiedot niiden ajankohdasta, nimistä, sijainnista ja muista tarpeellisista tiedoista.
 
@@ -31,7 +31,7 @@ Riippuvuudet sisältävät sekä [TypeScript-kielen](https://www.npmjs.com/packa
 Lisäksi riippuvuuksista löytyy [`node-fetch`](https://www.npmjs.com/package/node-fetch), joka mahdollistaa selaimista tutun `fetch`-funktion hyödyntämisen REST-rajapinnan kutsumiseksi. Node.js:n [versiosta 18 alkaen](https://nodejs.org/dist/latest/docs/api/globals.html#fetch) `fetch`-funktio kuuluu osaksi standardikirjastoa, eikä vaadi enää erillistä asennusta. Node.js sinulta tulee löytyä valmiina.
 
 
-## Järjesteltävä aineisto
+## Lajiteltava aineisto
 
 [MyHelsinki Open API](https://open-api.myhelsinki.fi/) on MyHelsinki.fi-sivuston avoin REST-rajapinta kaupungin tapahtumien, paikkojen ja aktiviteettien tietoihin:
 
@@ -63,7 +63,7 @@ Karkeasti supistettuna rajapinnasta saatu vastaus voi näyttää esimerkiksi seu
       "name": {
         "fi": "Suomenkielinen tapahtuman nimi",
         "en": "English name",
-        "sv": "Svenska namn",
+        "sv": "samma på svenska",
         "zh": "标题"
       },
       "description": {
@@ -84,13 +84,13 @@ Tehtävässä tätä tietorakennetta vastaava hieman yksinkertaistettu tyyppi on
 
 ## Ohjelman suorittaminen
 
-Tehtävän yksinkertainen tekstikäyttöliittymä on toteutettu valmiiksi [`src/index.ts`-tiedostossa](./src/index.ts). Käyttöliittymän on tarkoitus hakea tapahtumatiedot rajapinnasta ja tulostaa seuraavan viikon tapahtumat järjestettynä niiden alkamisajan mukaan. Ohjelma voidaan suorittaa `ts-node`-työkalulla seuraavasti:
+Tehtävän yksinkertainen tekstikäyttöliittymä on toteutettu valmiiksi [`src/index.ts`-tiedostossa](./src/index.ts). Käyttöliittymän on tarkoitus hakea tapahtumatiedot rajapinnasta ja tulostaa seuraavan viikon tapahtumat kasvavassa järjestyksessä niiden alkamisajan mukaan. Ohjelma voidaan suorittaa `ts-node`-työkalulla seuraavasti:
 
 ```
 $ npx ts-node src/index.ts
 ```
 
-Mikäli ohjelma järjestelee ja suodattaa tapahtumat oikein, on sen tuloste muodoltaan seuraava. Ohjelman päivämäärät ja kellonajat muotoillaan käyttöjärjestelmän asetusten mukaisesti, joten oma tulosteesi voi poiketa alla esitetystä:
+Mikäli ohjelma lajittelee ja suodattaa tapahtumat oikein, on sen tuloste muodoltaan seuraava. Ohjelman päivämäärät ja kellonajat muotoillaan käyttöjärjestelmän asetusten mukaisesti, joten oma tulosteesi voi poiketa alla esitetystä:
 
 ```md
 # Events from MyHelsinki Open API
@@ -118,7 +118,7 @@ Mikäli ohjelma järjestelee ja suodattaa tapahtumat oikein, on sen tuloste muod
 
 Annettu koodi huolehtii tapahtumien tulostamisesta, mutta **tapahtumat ovat väärässä järjestyksessä** ja **tapahtumien alkamisaikaa ei ole rajoitettu**.
 
-Kutsut tapahtumien suodattamiseksi ja järjestelemiseksi ovat valmiiksi paikoillaan [src/index.ts](./src/index.ts)-tiedostossa, mutta sinun tehtäväsi on toteuttaa varsinainen logiikka aineiston [suodattamiseksi](./src/filtering.ts) ja [järjestelemiseksi](./src/sorting.ts).
+Kutsut tapahtumien suodattamiseksi ja lajittelemiseksi ovat valmiiksi paikoillaan [src/index.ts](./src/index.ts)-tiedostossa, mutta sinun tehtäväsi on toteuttaa varsinainen logiikka aineiston [suodattamiseksi](./src/filtering.ts) ja [lajittelemiseksi](./src/sorting.ts).
 
 
 ## Osa 1: aineiston suodattaminen (2 pistettä)
@@ -144,7 +144,13 @@ Huomaa myös, että **käsiteltävässä tietorakenteessa päivämäärät ovat 
 
 ## Osa 2: tapahtumien lajittelu (3 pistettä)
 
-Tehtävän toisessa osassa sinun tulee **järjestää** tapahtumat niiden alkamisajan mukaan käyttäen **itse toteuttamaasi lajittelualgoritmia**. Tiedostossa [src/sorting.ts](./src/sorting.ts) on määriteltynä seuraava funktio:
+Tehtävän toisessa osassa sinun tulee **järjestää** eli **lajitella** tapahtumat niiden alkamisajan mukaan käyttäen **itse toteuttamaasi lajittelualgoritmia**.
+
+> *"Some examples where you can find direct application of sorting techniques include: Sorting by price, popularity etc in e-commerce websites"*
+>
+> [The Ohio State University. 7 algorithms and data structures every programmer must know](https://u.osu.edu/cstutorials/2016/11/21/7-algorithms-and-data-structures-every-programmer-must-know/)
+
+Tiedostossa [src/sorting.ts](./src/sorting.ts) on määriteltynä seuraava funktio:
 
 ```ts
 /**
@@ -156,13 +162,18 @@ export function sortEventsByStartDate(events: Event[]): Event[] {
 }
 ```
 
-Toteuta järjestämislogiikkasi tähän funktioon. Voit halutessasi toteuttaa myös erillisiä apufunktioita.
+Toteuta lajittelulogiikkasi tähän funktioon siten, että funktio palauttaa lopuksi uuden tapahtumataulukon, joka on lajiteltu tapahtuman alkamisajan mukaan kasvavassa järjestyksessä. Voit halutessasi toteuttaa myös erillisiä apufunktioita.
 
-> *"Some examples where you can find direct application of sorting techniques include: Sorting by price, popularity etc in e-commerce websites"*
->
-> [The Ohio State University. 7 algorithms and data structures every programmer must know](https://u.osu.edu/cstutorials/2016/11/21/7-algorithms-and-data-structures-every-programmer-must-know/)
+Huomaa, että koodisi tulee lajitella **kokonaisia tapahtumatietueita**, eli et voi poimia aineistosta esimerkiksi pelkkiä nimiä ja alkamisaikoja.
 
-Voit valita toteutettavan järjestämisalgoritmin esimerkiksi seuraavista:
+**Huom!** Kaikilla tapahtumilla ei välttämättä ole alkamisaikaa tiedossa, eli alkamisaika on `null`. Voit lajitella tällaiset tapahtumat valintasi mukaan joko taulukon alkuun tai loppuun.
+
+🚨 **Tämän harjoituksen tavoitteena on opetella itse toteuttamaan jokin tunnettu lajittelualgoritmi, joten JavaScriptin valmiin `Array.sort`-funktion käyttämistä ei sallita.** 🚨
+
+
+### Yleisimmät lajittelualgoritmit
+
+Voit valita toteutettavan lajittelualgoritmin esimerkiksi seuraavista:
 
 **Lisäyslajittelu eli Insertion Sort**
 
@@ -197,19 +208,13 @@ Voit valita toteutettavan järjestämisalgoritmin esimerkiksi seuraavista:
 *Kuva: By en:User:RolandH, CC BY-SA 3.0, [https://commons.wikimedia.org/w/index.php?curid=1965827](https://commons.wikimedia.org/w/index.php?curid=1965827)*
 
 
-Huomaa, että koodisi tulee järjestellä **kokonaisia tapahtumatietueita**, eli et voi poimia aineistosta järjesteltäväksi esimerkiksi pelkkiä nimiä ja alkamisaikoja.
-
-
-🚨 **Tämän harjoituksen tavoitteena on opetella itse toteuttamaan jokin tunnettu järjestämisalgoritmi, joten JavaScriptin valmiin `Array.sort`-funktion käyttämistä ei sallita.** 🚨
-
-
 ### Algoritmin valintaperusteet
 
 Voit valita itsellesi mieluisen algoritmin esimerkiksi tutustumalla ensin niiden tehokkuuteen. Voit myös hyvin valita sen, joka vaikuttaa toteutukseltaan sopivan yksinkertaiselta. Muista myös, että voit kysyä Teamsissa neuvoa mihin vain tehtävässä kohtaamaasi haasteeseen liittyen. Todennäköisesti samojen haasteiden parissa kamppailee myös moni muu kurssilainen.
 
-Arvioi lopuksi tehtävää ratkaistessasi järjestämiseen kuluvaa aikaa. Miten esimerkiksi aineiston koon kaksinkertaistaminen vaikuttaisi ohjelmasi suoritusaikaan? Kirjoita yhden virkkeen pituinen arvio suorituskyvystä funktiosi yhteyteen kommenttina.
+Arvioi lopuksi tehtävää ratkaistessasi lajitteluun kuluvaa aikaa. Miten esimerkiksi aineiston koon kaksinkertaistaminen vaikuttaisi ohjelmasi suoritusaikaan? Kirjoita yhden virkkeen pituinen arvio suorituskyvystä funktiosi yhteyteen kommenttina.
 
-**Huom!** Oikeassa ohjelmistoprojektissa käyttäisit JavaScriptin `Array.sort`-funktiota ja antaisit sille parametrina kahden tapahtuman ajankohtia vertailevan vertailufunktion. Voit tutustua aiheeseen esim. [mdn web docs -sivustolla](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort). Tässä tehtävässä kuitenkin harjoitellaan algoritmin toteutusta, joten kirjoitamme järjestelemisen itse.
+**Huom!** Oikeassa ohjelmistoprojektissa käyttäisit JavaScriptin `Array.sort`-funktiota ja antaisit sille parametrina kahden tapahtuman ajankohtia vertailevan vertailufunktion. Voit tutustua aiheeseen esim. [mdn web docs -sivustolla](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort). Tässä tehtävässä kuitenkin harjoitellaan algoritmin toteutusta, joten kirjoitamme lajittelun itse.
 
 
 ## Tehtävän testaaminen
