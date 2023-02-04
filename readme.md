@@ -96,7 +96,11 @@ Tehtävän yksinkertainen tekstikäyttöliittymä on toteutettu valmiiksi [`src/
 
 ```
 $ npx ts-node src/index.ts
+```
 
+Mikäli ohjelma järjestelee ja suodattaa tapahtumat oikein, on sen tuloste muodoltaan seuraava. Ohjelman päivämäärät ja kellonajat muotoillaan käyttöjärjestelmän asetusten mukaisesti, joten oma tulosteesi voi poiketa alla esitetystä:
+
+```md
 # Events from MyHelsinki Open API
 
 ## 2/3/2023
@@ -120,7 +124,7 @@ $ npx ts-node src/index.ts
 ...
 ```
 
-Annettu koodi huolehtii tapahtumien tulostamisesta, mutta **tapahtumat ovat väärässä järjestyksessä** ja **tapahtumien alkamisaikaa ei ole rajoitettu**. Ohjelman päivämäärät ja kellonajat muotoillaan käyttöjärjestelmän asetusten mukaisesti, joten oma tulosteesi voi poiketa yllä esitetystä.
+Annettu koodi huolehtii tapahtumien tulostamisesta, mutta **tapahtumat ovat väärässä järjestyksessä** ja **tapahtumien alkamisaikaa ei ole rajoitettu**.
 
 Kutsut tapahtumien suodattamiseksi ja järjestelemiseksi ovat valmiiksi paikoillaan [src/index.ts](./src/index.ts)-tiedostossa, mutta sinun tehtäväsi on toteuttaa varsinainen logiikka aineiston suodattamiseksi ja järjestelemiseksi.
 

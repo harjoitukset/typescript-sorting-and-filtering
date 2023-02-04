@@ -26,19 +26,26 @@ describe('sorting events by starting date', () => {
         assert.deepEqual(sorted, [first, second, third]);
     });
 
+    test('sorting handles events with identical dates correctly', () => {
+        let unorderedTwice = [...unordered, ...unordered];
+        let sorted = sortEventsByStartDate(unorderedTwice);
+
+        assert.deepEqual(sorted, [first, first, second, second, third, third]);
+    });
+
     test('sorting does not modify the original array', () => {
         sortEventsByStartDate(unordered);
 
         assert.deepEqual(unordered, [third, first, second]);
     });
 
-    test('sorting may not invoke Array.sort', () => {
+    test('sorting is not allowed to utilize Array.sort', () => {
         let notAllowed = (compareFn?: ((a: any, b: any) => number)): any[] => {
             throw new Error('Using Array.sort is not allowed in the exercise!');
         };
         jest.spyOn(Array.prototype, 'sort').mockImplementation(notAllowed);
 
-        // this will throw an error if Array.sort is called:
+        // if Array.sort is called inside the function, an error will be thrown
         sortEventsByStartDate(unordered);
 
         assert.ok(true, 'Array.sort was not called');

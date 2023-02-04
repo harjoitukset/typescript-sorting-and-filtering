@@ -25,7 +25,7 @@ describe('filtering events', () => {
 
     const events = [past, inRange, future, noDate];
 
-    test('past events are excluded', () => {
+    test('events with no date are excluded', () => {
         let filtered = filterEventsByStartDate(events, from, to);
         assert.ok(!filtered.includes(noDate), `events without a starting date should not be included`);
     });
