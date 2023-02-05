@@ -17,12 +17,15 @@
 import { Event } from "./types/Event";
 import fetch from "node-fetch";
 
-type HelsinkiApiResponse<T> = {
-    data: T[];
-};
 
 export async function getEvents(): Promise<Event[]> {
     let response = await fetch('https://open-api.myhelsinki.fi/v1/events/');
-    let json = await response.json() as HelsinkiApiResponse<Event>;
+
+    if (!response.ok) {
+        throw new Error(`Got HTTP status ${response.status} (${response.statusText}) when fetching events from MyHelsinki OpenAPI.`);
+    }
+
+    // events are in an array called `data` within the JSON response:
+    let json = await response.json() as { data: Event[] };
     return json.data;
 }
