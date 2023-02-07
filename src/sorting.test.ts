@@ -3,6 +3,7 @@ import { strict as assert } from 'node:assert';
 import { Event } from './types/Event';
 import { sortEventsByStartDate } from './sorting';
 
+/** Creates an Event with the given date. Useful for testing. */
 function createTestEvent(startingDay?: string): Event {
     return {
         name: {},
@@ -33,6 +34,19 @@ describe('sorting events by starting date', () => {
         assert.deepEqual(sorted, [first, first, second, second, third, third]);
     });
 
+    test('sorting an empty array should not throw exceptions', () => {
+        let sorted = sortEventsByStartDate([]);
+
+        assert.deepEqual(sorted, []);
+    });
+
+    test('sorting events without dates should not throw exceptions', () => {
+        let noDate = createTestEvent(undefined);
+        let sorted = sortEventsByStartDate([noDate, noDate]);
+
+        assert.deepEqual(sorted, [noDate, noDate]);
+    });
+
     test('sorting does not modify the original array', () => {
         sortEventsByStartDate(unordered);
 
@@ -40,6 +54,7 @@ describe('sorting events by starting date', () => {
     });
 
     test('sorting is not allowed to utilize Array.sort', () => {
+        // this function will replace `Array.sort` and throw an exception if called:
         let notAllowed = (compareFn?: ((a: any, b: any) => number)): any[] => {
             throw new Error('Using Array.sort is not allowed in the exercise!');
         };
