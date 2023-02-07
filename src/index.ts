@@ -10,13 +10,18 @@ const MILLISECONDS_PER_WEEK = 30 * 24 * 60 * 60 * 1_000;
  * the next week in ascending order.
  */
 async function main() {
-    const now = new Date();
-    const nextWeek = new Date(now.getTime() + MILLISECONDS_PER_WEEK);
+    try {
+        const now = new Date();
+        const nextWeek = new Date(now.getTime() + MILLISECONDS_PER_WEEK);
 
-    const allEvents: Event[] = await getEvents();
-    const eventsNextWeek = filterEventsByStartDate(allEvents, now, nextWeek);
+        const allEvents: Event[] = await getEvents();
+        const eventsNextWeek = filterEventsByStartDate(allEvents, now, nextWeek);
 
-    printEvents(eventsNextWeek);
+        printEvents(eventsNextWeek);
+
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 /**
