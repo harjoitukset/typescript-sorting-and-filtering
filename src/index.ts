@@ -30,12 +30,14 @@ async function main() {
  * utilizes the user's locale.
  */
 function printEvents(events: Event[]) {
-    const sorted = sortEventsByStartDate(events);
+    const sortedByStartDate = sortEventsByStartDate(events);
 
     console.log(`# Events from MyHelsinki Open API`);
 
+    // keep track of the previous date, so we can log each day only once
     let previousDate = '';
-    sorted.forEach(event => {
+
+    for (let event of sortedByStartDate) {
         let name = getName(event);
 
         let isoDateTime = event.event_dates.starting_day;
@@ -49,7 +51,7 @@ function printEvents(events: Event[]) {
         }
 
         console.log(` * ${time}: ${name}`);
-    });
+    }
 }
 
 /**
