@@ -141,6 +141,24 @@ Huomaa, että kaikilla rajapinnan palauttamilla tapahtumilla ei välttämättä 
 
 Huomaa myös, että **käsiteltävässä tietorakenteessa päivämäärät ovat merkkijonoja**, kuten `"2025-10-24T16:00:00.000Z"`. Funktiolle annettavat parametrit ovat puolestaan [Date-olioita](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date). Voit hyödyntää päivämäärien muuntamisessa ja käsittelyssä erillisiä npm-paketteja, mutta myös [`Date`-luokan konstruktori](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date#constructor) tai [`Date.parse`-metodi](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse) riittävät tehtävän ratkaisemiseksi.
 
+Voit ajaa vain suodattamista koskevat testit seuraavalla komennolla:
+
+```sh
+$ npm test src/filtering.test.ts
+```
+
+Testien kuvaukset voivat auttaa hahmottamaan, minkälaisia tapauksia logiikassa tulee ottaa huomioon:
+
+```
+PASS  src/filtering.test.ts
+filtering events
+  ✓ events with no date are excluded
+  ✓ past events are excluded
+  ✓ future events are excluded
+  ✓ events in the range are included
+  ✓ function does not modify the given array
+```
+
 
 ## Osa 2: tapahtumien lajittelu (3 pistettä)
 
@@ -170,6 +188,24 @@ Huomaa, että koodisi tulee lajitella **kokonaisia tapahtumatietueita**, eli et 
 
 🚨 **Tämän harjoituksen tavoitteena on opetella itse toteuttamaan jokin tunnettu lajittelualgoritmi, joten JavaScriptin valmiin `Array.sort`-funktion käyttämistä ei sallita.** 🚨
 
+Voit ajaa vain lajittelua koskevat testit seuraavalla komennolla:
+
+```sh
+$ npm test src/sorting.test.ts
+```
+
+Testien kuvaukset voivat auttaa hahmottamaan, minkälaisia tapauksia logiikassa tulee ottaa huomioon:
+
+```
+PASS  src/sorting.test.ts
+sorting events by starting date
+  ✓ events are sorted in correct order
+  ✓ sorting handles events with identical dates correctly
+  ✓ sorting an empty array should not throw exceptions
+  ✓ sorting events without dates should not throw exceptions
+  ✓ sorting does not modify the original array
+  ✓ sorting is not allowed to utilize Array.sort
+```
 
 ### Yleisimmät lajittelualgoritmit
 
