@@ -141,7 +141,7 @@ Huomaa, että kaikilla rajapinnan palauttamilla tapahtumilla ei välttämättä 
 
 Huomaa myös, että **käsiteltävässä tietorakenteessa päivämäärät ovat merkkijonoja**, kuten `"2025-10-24T16:00:00.000Z"`. Funktiolle annettavat parametrit ovat puolestaan [Date-olioita](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date). Voit hyödyntää päivämäärien muuntamisessa ja käsittelyssä erillisiä npm-paketteja, mutta myös [`Date`-luokan konstruktori](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date#constructor) tai [`Date.parse`-metodi](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse) riittävät tehtävän ratkaisemiseksi.
 
-Voit ajaa vain suodattamista koskevat testit seuraavalla komennolla:
+Voit ajaa vain [suodattamista koskevat testit](./src/filtering.test.ts) seuraavalla komennolla:
 
 ```sh
 $ npm test src/filtering.test.ts
@@ -188,7 +188,7 @@ Huomaa, että koodisi tulee lajitella **kokonaisia tapahtumatietueita**, eli et 
 
 🚨 **Tämän harjoituksen tavoitteena on opetella itse toteuttamaan jokin tunnettu lajittelualgoritmi, joten JavaScriptin valmiin `Array.sort`-funktion käyttämistä ei sallita.** 🚨
 
-Voit ajaa vain lajittelua koskevat testit seuraavalla komennolla:
+Voit ajaa vain [lajittelua koskevat testit](./src/sorting.test.ts) seuraavalla komennolla:
 
 ```sh
 $ npm test src/sorting.test.ts
