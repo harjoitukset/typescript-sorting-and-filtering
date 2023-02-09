@@ -139,7 +139,12 @@ Tehtäväsi on toteuttaa tähän funktioon toimintalogiikka, joka suodattaa anne
 
 Huomaa, että kaikilla rajapinnan palauttamilla tapahtumilla ei välttämättä ole alkamisaikaa. **Tuntemattoman ajankohdan tapahtumat tulee suodattaa pois aineistosta.**
 
-Huomaa myös, että **käsiteltävässä tietorakenteessa päivämäärät ovat merkkijonoja**, kuten `"2025-10-24T16:00:00.000Z"`. Funktiolle annettavat parametrit ovat puolestaan [Date-olioita](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date). Voit hyödyntää päivämäärien muuntamisessa ja käsittelyssä erillisiä npm-paketteja, mutta myös [`Date`-luokan konstruktori](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date#constructor) tai [`Date.parse`-metodi](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse) riittävät tehtävän ratkaisemiseksi.
+Huomaa myös, että **käsiteltävässä tietorakenteessa päivämäärät ovat merkkijonoja**, kuten `"2025-10-24T16:00:00.000Z"`. Funktiolle annettavat parametrit ovat puolestaan [Date-olioita](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date). Voit hyödyntää päivämäärien muuntamisessa ja käsittelyssä halutessasi erillisiä npm-paketteja, mutta pärjäät myös hyvin ilman. Tässä voi olla apua esim. seuraavista:
+
+* [`Date`-luokan konstruktori](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date#constructor)
+* [`getTime()`-metodi](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTime)
+* [Nullish coalescing operator (`??`)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing)
+* [Optional chaining (`?.`)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining)
 
 Voit ajaa vain [suodattamista koskevat testit](./src/filtering.test.ts) seuraavalla komennolla:
 
