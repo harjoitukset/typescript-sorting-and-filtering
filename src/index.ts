@@ -3,7 +3,7 @@ import { sortEventsByStartDate } from "./sorting";
 import { getEvents } from "./client";
 import { Event } from "./types/Event";
 
-const MILLISECONDS_PER_WEEK = 30 * 24 * 60 * 60 * 1_000;
+const MILLISECONDS_PER_WEEK = 7 * 24 * 60 * 60 * 1_000;
 
 /**
  * Fetches events from MyHelsinki Open API and prints the events starting during
