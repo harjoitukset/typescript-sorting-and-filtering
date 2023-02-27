@@ -47,6 +47,15 @@ describe('sorting events by starting date', () => {
         assert.deepEqual(sorted, [noDate, noDate]);
     });
 
+    test('events with no date are in the beginning of the sorted array', () => {
+        let noDate = createTestEvent(undefined);
+
+        let original = [third, noDate, first, noDate, second];
+        let sorted = sortEventsByStartDate(original);
+
+        assert.deepEqual(sorted, [noDate, noDate, first, second, third]);
+    });
+
     test('sorting does not modify the original array', () => {
         sortEventsByStartDate(unordered);
 
@@ -65,5 +74,5 @@ describe('sorting events by starting date', () => {
 
         assert.ok(true, 'Array.sort was not called');
     });
-});
 
+});

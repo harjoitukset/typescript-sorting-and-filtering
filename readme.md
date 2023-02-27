@@ -189,7 +189,7 @@ Toteuta lajittelulogiikkasi tähän funktioon siten, että funktio palauttaa lop
 
 Huomaa, että koodisi tulee lajitella **kokonaisia tapahtumatietueita**, eli et voi poimia aineistosta esimerkiksi pelkkiä nimiä ja alkamisaikoja.
 
-**Huom!** Kaikilla tapahtumilla ei välttämättä ole alkamisaikaa tiedossa, eli alkamisaika on `null`. Voit lajitella tällaiset tapahtumat valintasi mukaan joko taulukon alkuun tai loppuun.
+**Huom!** Kaikilla tapahtumilla ei välttämättä ole alkamisaikaa tiedossa, eli alkamisaika voi olla `null` tai `undefined`. Tällaiset tapahtumat tulee lajitella aineiston **alkuun** ennen muita tapahtumia.
 
 🚨 **Tämän harjoituksen tavoitteena on opetella itse toteuttamaan jokin tunnettu lajittelualgoritmi, joten JavaScriptin valmiin `Array.sort`-funktion käyttämistä ei sallita.** 🚨
 
@@ -208,6 +208,7 @@ sorting events by starting date
   ✓ sorting handles events with identical dates correctly
   ✓ sorting an empty array should not throw exceptions
   ✓ sorting events without dates should not throw exceptions
+  ✓ events with no date are in the beginning of the sorted array
   ✓ sorting does not modify the original array
   ✓ sorting is not allowed to utilize Array.sort
 ```
