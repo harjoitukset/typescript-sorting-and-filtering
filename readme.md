@@ -1,5 +1,10 @@
+<center>
+🚧 🚧 🚧
 
-🚧 **Huom!** MyHelsinki Open API on lakkautettu, joten tämä tehtävä ei ole enää toimintakunnossa. 🚧
+🚧 <strong>Huom!</strong> MyHelsinki Open API on lakkautettu, joten tämä tehtävä ei ole enää toimintakunnossa. 🚧
+
+🚧 🚧 🚧
+</center>
 
 # TypeScript: Tapahtumien suodattaminen ja lajittelu
 
