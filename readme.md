@@ -1,3 +1,6 @@
+
+🚧 **Huom!** MyHelsinki Open API on lakkautettu, joten tämä tehtävä ei ole enää toimintakunnossa. 🚧
+
 # TypeScript: Tapahtumien suodattaminen ja lajittelu
 
 Tämän tehtävän tarkoituksena on harjoitella sisäkkäisistä tietorakenteista koostuvan aineiston suodattamista sekä järjestämistä eli lajittelua tiettyjen ehtojen mukaisesti.
